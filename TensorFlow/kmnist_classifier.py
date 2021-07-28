@@ -1,9 +1,9 @@
 import tensorflow as tf
-from Utilities import model, data_loader
+from Utilities import model_tools, tf_data_loader
 import matplotlib.pyplot as plt
 
 # Load our datset into train and test frames
-(train_data, val_data, test_data) = data_loader.load_dataset('kmnist')
+(train_data, val_data, test_data) = tf_data_loader.load_dataset('kmnist')
 
 # Define parameters for the model
 IMAGE_SIZE = (28, 28, 1)
@@ -16,10 +16,12 @@ DROPOUT = .4
 EPOCHS = 15
 
 # Build a CNN using our parameters and compile
-kmnist_model = model.define_model(shape=IMAGE_SIZE, base_filters=FILTERS,
-                                  kernel_size=KERNEL_SIZE,
-                                  pool_size=POOL_SIZE,
-                                  dropout=DROPOUT, num_classes=NUM_CLASSES)
+kmnist_model = model_tools.define_simple_model(shape=IMAGE_SIZE,
+                                               base_filters=FILTERS,
+                                               kernel_size=KERNEL_SIZE,
+                                               pool_size=POOL_SIZE,
+                                               dropout=DROPOUT,
+                                               num_classes=NUM_CLASSES)
 
 kmnist_model.compile(loss=tf.keras.losses.sparse_categorical_crossentropy,
                      optimizer=tf.keras.optimizers.Adam(.001),
