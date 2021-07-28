@@ -1,11 +1,11 @@
 import tensorflow as tf
 from Utilities import model_tools, tf_data_loader
-import matplotlib.pyplot as plt
+
 
 # Load our datset into train and test frames
 (train_data, val_data, test_data) = tf_data_loader.load_dataset('kmnist')
 
-# Define parameters for the model
+# Network Design Parameters
 IMAGE_SIZE = (28, 28, 1)
 FILTERS = 64
 KERNEL_SIZE = (3, 3)

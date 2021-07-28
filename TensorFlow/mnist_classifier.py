@@ -64,31 +64,31 @@ BATCH_SIZE = 64
 
 
 # Define the model using the parameters above
-no_pooling_model = model_tools.define_configurable_model(shape=IMG_SHAPE,
-                                                         base_filters=FILTERS,
-                                                         kernel_size=KERNEL_SIZE,
-                                                         pool_size=POOL_SIZE,
-                                                         dropout=DROPOUT,
-                                                         num_classes=NUM_CLASSES,
-                                                         depth=DEPTH,
-                                                         with_pooling=False)
+no_pooling_mnist_model = model_tools.define_configurable_model(shape=IMG_SHAPE,
+                                                               base_filters=FILTERS,
+                                                               kernel_size=KERNEL_SIZE,
+                                                               pool_size=POOL_SIZE,
+                                                               dropout=DROPOUT,
+                                                               num_classes=NUM_CLASSES,
+                                                               depth=DEPTH,
+                                                               with_pooling=False)
 
-# Compile the Model
-no_pooling_model.compile(loss=tf.keras.losses.categorical_crossentropy,
-                         optimizer=tf.keras.optimizers.Adam(.001),
-                         metrics=['accuracy'])
+# Compile the model
+no_pooling_mnist_model.compile(loss=tf.keras.losses.categorical_crossentropy,
+                               optimizer=tf.keras.optimizers.Adam(.001),
+                               metrics=['accuracy'])
 
 # Define early stopping criteria
 callbacks = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=3, mode='auto')
 
 # Train and validate our model
-no_pooling_model.fit(train_x, train_y,
-                     batch_size=BATCH_SIZE,
-                     epochs=EPOCHS,
-                     validation_data=(valid_x, valid_y),
-                     callbacks=callbacks)
+no_pooling_mnist_model.fit(train_x, train_y,
+                           batch_size=BATCH_SIZE,
+                           epochs=EPOCHS,
+                           validation_data=(valid_x, valid_y),
+                           callbacks=callbacks)
 
 # Evaluate the model using the test dataset, print the loss and accuracy data
-[loss, accuracy] = no_pooling_model.evaluate(test_x, test_y)
+[loss, accuracy] = no_pooling_mnist_model.evaluate(test_x, test_y)
 print('Test Dataset Accuracy: ', accuracy)
 print('Test Dataset Loss: ', loss)
