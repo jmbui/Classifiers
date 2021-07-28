@@ -7,12 +7,12 @@ import matplotlib.pyplot as plt
 
 # Define parameters for the model
 IMAGE_SIZE = (28, 28, 1)
-FILTERS = 16
+FILTERS = 64
 KERNEL_SIZE = (3, 3)
 POOL_SIZE = (2, 2)
 NUM_CLASSES = 10
-BATCH_SIZE = 32
-DROPOUT = .35
+BATCH_SIZE = 128
+DROPOUT = .4
 EPOCHS = 15
 
 # Build a CNN using our parameters and compile
